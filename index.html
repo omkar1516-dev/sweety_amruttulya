@@ -338,8 +338,10 @@
                 <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                     <div>
                         <h2 class="text-3xl font-extrabold text-tea-900 font-hindi">हमारे प्रोडक्ट्स (Premix Range)</h2>
-                        <h4 class="text-2xl font-bold text-tea-900 font-hindi">qty: Available in: 100g, 250g 500g & 1kg </h4>
-                        <p class="text-gray-600 text-sm">Select your favorite tea premix and order directly (Tell us your qty.)</p>
+                        <h4 class="text-2xl font-bold text-tea-900 font-hindi">qty: Available in: 100g, 250g 500g & 1kg
+                        </h4>
+                        <p class="text-gray-600 text-sm">Select your favorite tea premix and order directly (Tell us
+                            your qty.)</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openBulkEnquiryModal()"
@@ -647,8 +649,8 @@
                 <div>
                     <h4 class="text-lg font-bold text-white mb-3">Connect With Us</h4>
                     <div class="flex space-x-4 text-xl">
-                        <a href="https://api.whatsapp.com/send/?phone=918160525632" target="_blank" class="text-green-400 hover:text-green-300"><i
-                                class="fab fa-whatsapp"></i></a>
+                        <a href="https://api.whatsapp.com/send/?phone=918160525632" target="_blank"
+                            class="text-green-400 hover:text-green-300"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/sweetyamruttulya/" target="_blank"
                             class="text-pink-400 hover:text-pink-300"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/p/%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BF%E0%A4%9F%E0%A5%80-%E0%A4%85%E0%A4%AE%E0%A5%83%E0%A4%A4%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%AF-61584167008181/"
@@ -759,7 +761,8 @@
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Passkey Password</label>
-                    <input type="password" id="admin-passkey" placeholder="Admin panel accessable for dev team only" required
+                    <input type="password" id="admin-passkey" placeholder="Admin panel accessable for dev team only"
+                        required
                         class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-tea-600 focus:outline-none">
                 </div>
                 <button type="submit"
@@ -825,25 +828,34 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // CONFIGURATION
-        const WHATSAPP_NUMBER = "918160525632"; // Updated phone number placeholder
+        /* =========================================================
+           SWEETY AMRUTTULYA - MAIN JAVASCRIPT
+           VERCEL / GITHUB SAFE VERSION
+           ========================================================= */
 
-        // INITIAL DEFAULT DATA (PERSISTED IN LOCALSTORAGE)
+        const WHATSAPP_NUMBER = "918160525632";
+        const PRODUCTS_STORAGE_KEY = "sweety_products";
+        const ENQUIRIES_STORAGE_KEY = "sweety_enquiries";
+
+        /* =========================================================
+           DEFAULT PRODUCTS
+           ========================================================= */
+
         const DEFAULT_PRODUCTS = [
             {
                 id: "1",
                 name: "Special Jaggery Basundi Tea Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/bassundi.jpeg",
-                desc: "Rich, creamy tea blended with authentic jaggery for a naturally sweet and indulgent Basundi-style taste. ☕✨"
+                desc: "Rich, creamy tea blended with authentic jaggery for a naturally sweet and indulgent Basundi-style taste."
             },
             {
                 id: "2",
-                name: "Spacial Cold Chocolate Coffee ☕🍫 Amruttulya Premix",
+                name: "Special Cold Chocolate Coffee Amruttulya Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/chococoff.jpeg",
                 desc: "A rich, creamy and refreshing blend of chocolate and premium coffee, served chilled for the perfect indulgent experience."
@@ -852,25 +864,25 @@
                 id: "3",
                 name: "Sweety Amruttulya Green Tea Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/greentea.jpeg",
-                desc: "Revitalize your day with a refreshingly light and healthy green tea infused with natural goodness. Enjoy a perfect balance of wellness"
+                desc: "A refreshing green tea premix offering a light and enjoyable tea experience."
             },
             {
                 id: "4",
                 name: "Sweety Amruttulya Lemon Tea Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/lemon tea.jpg",
-                desc: "Brighten your day with a zesty and invigorating blend of refreshing citrus citrus goodness. Perfectly balanced to offer a crisp."
+                desc: "A refreshing citrus tea blend with a bright lemon flavour."
             },
             {
                 id: "5",
                 name: "Sweety Amruttulya Jaggery Cardamom Tea Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/cerdmom.jpeg",
                 desc: "Rich cardamom flavour crafted for premium Amruttulya tea lovers."
@@ -879,431 +891,1113 @@
                 id: "6",
                 name: "Sweety Amruttulya Butterscotch Coffee Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/butterscotch.jpeg",
-                desc: "Indulge in a smooth, velvet-like blend of real coffee paired with rich, creamy butterscotch. A sweet, luxurious treat crafted to bring delight in every sip!"
+                desc: "A smooth blend of coffee and rich butterscotch flavour."
             },
             {
                 id: "7",
                 name: "Sweety Amruttulya Watermelon Juice Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/melonjuice.jpeg",
-                desc: "Experience the true taste of freshness made with real fruit! Perfectly juicy and invigorating, it brings a sweet, refreshing splash of hydration to every moment."
+                desc: "A refreshing watermelon juice premix with a naturally fruity taste."
             },
             {
                 id: "8",
                 name: "Sweety Amruttulya Mix Fruit Juice Premix",
                 price: 480,
-                offerPrice: "60 - 399",
+                offerPrice: 399,
                 qty: "100gm - 1kg Pack",
                 img: "images/mixfrtjuice.jpeg",
-                desc: "Enjoy the perfect blend of taste and health made with real fruits! A delicious mix of wholesome fruit flavors that brings natural sweetness and refreshment to every sip"
+                desc: "A delicious blend of mixed fruit flavours for a refreshing drink."
             },
             {
                 id: "9",
-                name: "Switty Amruttulya Travel-Ready Tea Premix",
+                name: "Sweety Amruttulya Travel-Ready Tea Premix",
                 price: 199,
                 offerPrice: 149,
-                qty: "15g Pack  (10 sachet)",
+                qty: "15g Pack (10 Sachets)",
                 img: "images/travelpack.png",
-                desc: "Your Perfect Cup of Tea, Anytime, Anywhere."
-            },/*
-            {
-                id: "10",
-                name: "Lemon Tea Premix",
-                price: 55 - 380,
-                offerPrice: 65 - 499,
-                qty: "100gm - 1kg Pack",
-                img: "images/logo.png",
-                desc: "Refreshing lemon tea blend with a light citrusy flavour."
-            },
-            {
-                id: "11",
-                name: "Rose Tea Premix",
-                price: 55 - 380,
-                offerPrice: 65 - 499,
-                qty: "100gm - 1kg Pack",
-                img: "images/logo.png",
-                desc: "Delicate rose aroma combined with premium tea for a unique experience."
-            },
-            {
-                id: "12",
-                name: "Premium Amruttulya Tea",
-                price: 55 - 380,
-                offerPrice: 65 - 499,
-                qty: "100gm - 1kg Pack",
-                img: "images/logo.png",
-                desc: "Our premium bulk pack designed for cafes, offices and regular tea lovers."
-            }, 
-            {
-                id: "13",
-                name: "Lemon Tea Premix",
-                price: 250,
-                offerPrice: 199,
-                qty: "500g Pack",
-                img: "images/logo.png",
-                desc: "Refreshing lemon tea blend with a light citrusy flavour."
-            },
-            {
-                id: "14",
-                name: "Rose Tea Premix",
-                price: 320,
-                offerPrice: 269,
-                qty: "500g Pack",
-                img: "images/logo.png",
-                desc: "Delicate rose aroma combined with premium tea for a unique experience."
-            },
-            {
-                id: "15",
-                name: "Premium Amruttulya Tea",
-                price: 400,
-                offerPrice: 349,
-                qty: "1 Kg Pack",
-                img: "images/logo.png",
-                desc: "Our premium bulk pack designed for cafes, offices and regular tea lovers."
-            }*/
+                desc: "Your perfect cup of tea, anytime, anywhere."
+            }
         ];
-        // LOCAL STORAGE STATE REMOVED
-        let products = DEFAULT_PRODUCTS;
-        
 
-        // INITIALIZATION
-        document.getElementById('year').textContent = new Date().getFullYear();
-        renderProducts();
-        renderAdminProducts();
-        renderAdminEnquiries();
+        /* =========================================================
+           SAFE LOCAL STORAGE HELPERS
+           ========================================================= */
 
-        // NAVIGATION
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
-            const target = document.getElementById(`page-${pageId}`);
-            if (target) {
-                target.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        function loadStorage(key, fallback) {
+            try {
+                const stored = localStorage.getItem(key);
+
+                if (!stored) {
+                    return fallback;
+                }
+
+                const parsed = JSON.parse(stored);
+
+                return parsed;
+            } catch (error) {
+                console.error(`LocalStorage error for ${key}:`, error);
+                return fallback;
             }
         }
 
+        function saveStorage(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (error) {
+                console.error(`Unable to save ${key}:`, error);
+                return false;
+            }
+        }
+
+        /* =========================================================
+           INITIAL STATE
+           ========================================================= */
+
+        let products = loadStorage(
+            PRODUCTS_STORAGE_KEY,
+            DEFAULT_PRODUCTS
+        );
+
+        let enquiries = loadStorage(
+            ENQUIRIES_STORAGE_KEY,
+            []
+        );
+
+        /* Safety validation */
+        if (!Array.isArray(products)) {
+            products = [...DEFAULT_PRODUCTS];
+        }
+
+        if (!Array.isArray(enquiries)) {
+            enquiries = [];
+        }
+
+        /* =========================================================
+           INITIALIZATION
+           ========================================================= */
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const yearElement = document.getElementById("year");
+
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+
+            renderProducts();
+            renderAdminProducts();
+            renderAdminEnquiries();
+
+            showPage("home");
+
+            console.log("Sweety Amruttulya website initialized successfully.");
+        });
+
+        /* =========================================================
+           NAVIGATION
+           ========================================================= */
+
+        function showPage(pageId) {
+
+            document.querySelectorAll(".page-section").forEach(section => {
+                section.classList.add("hidden");
+            });
+
+            const target = document.getElementById(`page-${pageId}`);
+
+            if (!target) {
+                console.error(`Page not found: page-${pageId}`);
+                return;
+            }
+
+            target.classList.remove("hidden");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+
+            const menu = document.getElementById("mobile-menu");
+
+            if (!menu) return;
+
+            menu.classList.toggle("hidden");
         }
 
-        // PRODUCT RENDERING
-        function renderProducts() {
-            const container = document.getElementById('products-grid');
-            if (!container) return;
+        /* =========================================================
+           MODALS
+           ========================================================= */
 
-            container.innerHTML = products.map(prod => `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-tea-200 flex flex-col hover:shadow-xl transition duration-300">
-                    <div class="relative bg-tea-100 h-48 flex items-center justify-center overflow-hidden">
-                        <img src="${prod.img}" alt="${prod.name}" class="w-full h-full object-cover" onerror="this.src='images/logo.jpg'">
-                        <span class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow">
-                            ${Math.round(((prod.price - prod.offerPrice) / prod.price) * 100)}% OFF
-                        </span>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs font-semibold text-tea-600 bg-tea-100 px-2.5 py-1 rounded-md">${prod.qty}</span>
-                            <h3 class="text-xl font-bold text-tea-900 mt-2">${prod.name}</h3>
-                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">${prod.desc}</p>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <div class="flex items-baseline gap-2 mb-4">
-                                <span class="text-2xl font-bold text-tea-800">₹${prod.offerPrice}</span>
-                                <span class="text-sm text-gray-400 line-through">₹${prod.price}</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="openOrderModal('${prod.id}')" class="bg-tea-800 hover:bg-tea-900 text-gold font-bold py-2 px-3 rounded-lg text-sm transition text-center">
-                                    Proceed Order
-                                </button>
-                                <button onclick="quickEnquire('${prod.name}')" class="border border-tea-800 text-tea-800 hover:bg-tea-50 font-bold py-2 px-3 rounded-lg text-sm transition text-center">
-                                    Enquire
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // MODAL HANDLERS
         function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
+
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.add("hidden");
+            }
         }
 
-        function openOrderModal(prodId) {
-            const prod = products.find(p => p.id === prodId);
-            if (!prod) return;
-            document.getElementById('modal-product-id').value = prod.id;
-            document.getElementById('modal-product-title').textContent = `Order: ${prod.name}`;
-            document.getElementById('order-modal').classList.remove('hidden');
+        function openOrderModal(productId) {
+
+            const product = products.find(
+                p => String(p.id) === String(productId)
+            );
+
+            if (!product) {
+                alert("Product not found.");
+                return;
+            }
+
+            document.getElementById("modal-product-id").value = product.id;
+
+            document.getElementById("modal-product-title").textContent =
+                `Order: ${product.name}`;
+
+            document.getElementById("order-qty").value = 1;
+
+            document.getElementById("order-modal").classList.remove("hidden");
         }
 
         function openBulkEnquiryModal() {
-            document.getElementById('bulk-modal').classList.remove('hidden');
+
+            document.getElementById("bulk-modal").classList.remove("hidden");
         }
 
         function openAdminLoginModal() {
-            document.getElementById('admin-login-modal').classList.remove('hidden');
+
+            document.getElementById("admin-login-modal").classList.remove("hidden");
+
+            setTimeout(() => {
+                document.getElementById("admin-passkey")?.focus();
+            }, 100);
         }
 
-        // WHATSAPP & ORDER ACTIONS
-        function handleOrderSubmit(e) {
-            e.preventDefault();
-            const prodId = document.getElementById('modal-product-id').value;
-            const prod = products.find(p => p.id === prodId);
-            const name = document.getElementById('order-name').value;
-            const mobile = document.getElementById('order-mobile').value;
-            const email = document.getElementById('order-email').value || 'N/A';
-            const qty = document.getElementById('order-qty').value;
+        /* =========================================================
+           IMAGE FALLBACK
+           ========================================================= */
 
-            // Save Enquiry to Local Storage
+        function imageFallback(imageElement) {
+
+            if (!imageElement) return;
+
+            imageElement.onerror = null;
+
+            imageElement.src = "images/logo.png";
+        }
+
+        /* =========================================================
+           PRODUCT HELPERS
+           ========================================================= */
+
+        function getDiscountPercentage(product) {
+
+            const price = Number(product.price);
+            const offerPrice = Number(product.offerPrice);
+
+            if (
+                !Number.isFinite(price) ||
+                !Number.isFinite(offerPrice) ||
+                price <= 0 ||
+                offerPrice < 0 ||
+                offerPrice >= price
+            ) {
+                return 0;
+            }
+
+            return Math.round(
+                ((price - offerPrice) / price) * 100
+            );
+        }
+
+        function formatPrice(value) {
+
+            const number = Number(value);
+
+            if (!Number.isFinite(number)) {
+                return "0";
+            }
+
+            return number.toLocaleString("en-IN");
+        }
+
+        /* =========================================================
+           PRODUCT RENDERING
+           ========================================================= */
+
+        function renderProducts() {
+
+            const container = document.getElementById("products-grid");
+
+            if (!container) return;
+
+            if (!products.length) {
+
+                container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">
+                        No products available at the moment.
+                    </p>
+                </div>
+            `;
+
+                return;
+            }
+
+            container.innerHTML = products.map(product => {
+
+                const discount = getDiscountPercentage(product);
+
+                return `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-tea-200 flex flex-col hover:shadow-xl transition duration-300">
+
+                    <div class="relative bg-tea-100 h-48 flex items-center justify-center overflow-hidden">
+
+                        <img
+                            src="${escapeHtml(product.img)}"
+                            alt="${escapeHtml(product.name)}"
+                            loading="lazy"
+                            class="w-full h-full object-cover"
+                            onerror="imageFallback(this)"
+                        >
+
+                        ${discount > 0
+                        ? `
+                                <span class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                                    ${discount}% OFF
+                                </span>
+                                `
+                        : ""
+                    }
+
+                    </div>
+
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+
+                        <div>
+
+                            <span class="text-xs font-semibold text-tea-600 bg-tea-100 px-2.5 py-1 rounded-md">
+                                ${escapeHtml(product.qty)}
+                            </span>
+
+                            <h3 class="text-xl font-bold text-tea-900 mt-2">
+                                ${escapeHtml(product.name)}
+                            </h3>
+
+                            <p class="text-gray-600 text-sm mt-2 line-clamp-2">
+                                ${escapeHtml(product.desc)}
+                            </p>
+
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+
+                            <div class="flex items-baseline gap-2 mb-4">
+
+                                <span class="text-2xl font-bold text-tea-800">
+                                    ₹${formatPrice(product.offerPrice)}
+                                </span>
+
+                                ${Number(product.price) > Number(product.offerPrice)
+                        ? `
+                                        <span class="text-sm text-gray-400 line-through">
+                                            ₹${formatPrice(product.price)}
+                                        </span>
+                                        `
+                        : ""
+                    }
+
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+
+                                <button
+                                    type="button"
+                                    onclick="openOrderModal('${product.id}')"
+                                    class="bg-tea-800 hover:bg-tea-900 text-gold font-bold py-2 px-3 rounded-lg text-sm transition text-center">
+                                    Proceed Order
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onclick="quickEnquire('${escapeJs(product.name)}')"
+                                    class="border border-tea-800 text-tea-800 hover:bg-tea-50 font-bold py-2 px-3 rounded-lg text-sm transition text-center">
+                                    Enquire
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+            }).join("");
+        }
+
+        /* =========================================================
+           WHATSAPP
+           ========================================================= */
+
+        function openWhatsApp(message) {
+
+            const cleanNumber = WHATSAPP_NUMBER.replace(/\D/g, "");
+
+            const url =
+                `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+
+            window.location.assign(url);
+        }
+
+        /* =========================================================
+           ORDER SUBMIT
+           ========================================================= */
+
+        function handleOrderSubmit(event) {
+
+            event.preventDefault();
+
+            const productId =
+                document.getElementById("modal-product-id").value;
+
+            const product = products.find(
+                p => String(p.id) === String(productId)
+            );
+
+            if (!product) {
+
+                alert("Product not found.");
+
+                return;
+            }
+
+            const name =
+                document.getElementById("order-name").value.trim();
+
+            const mobile =
+                document.getElementById("order-mobile").value.trim();
+
+            const email =
+                document.getElementById("order-email").value.trim() || "N/A";
+
+            const qty =
+                Math.max(
+                    1,
+                    Number(document.getElementById("order-qty").value) || 1
+                );
+
+            const unitPrice = Number(product.offerPrice) || 0;
+
+            const totalPrice = unitPrice * qty;
+
+            /* Save enquiry */
             const newEnquiry = {
                 id: Date.now().toString(),
-                date: new Date().toLocaleDateString(),
+                date: new Date().toLocaleString("en-IN"),
                 name,
                 mobile,
                 email,
-                detail: `${prod.name} (${qty} pack/s)`,
-                status: 'New'
+                detail: `${product.name} (${qty} pack/s) - ₹${formatPrice(totalPrice)}`,
+                status: "New"
             };
 
             enquiries.unshift(newEnquiry);
-            localStorage.setItem('sweety_enquiries', JSON.stringify(enquiries));
+
+            saveStorage(
+                ENQUIRIES_STORAGE_KEY,
+                enquiries
+            );
+
             renderAdminEnquiries();
 
-            // Construct WhatsApp Message
-            const msg = `*NEW ORDER ENQUIRY - Sweety Amruttulya*%0A` +
-                `----------------------------------%0A` +
-                `*Customer:* ${name}%0A` +
-                `*Mobile:* ${mobile}%0A` +
-                `*Email:* ${email}%0A` +
-                `*Product:* ${prod.name}%0A` +
-                `*Quantity (Kg):* ${qty}%0A` +
-                `*Price:* ₹${prod.offerPrice * qty}%0A` +
-                `----------------------------------%0A` +
-                `Please process my order.`;
+            /* WhatsApp message */
+            const message = `*NEW ORDER ENQUIRY - SWEETY AMRUTTULYA*
 
-            closeModal('order-modal');
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+----------------------------------
+*Customer:* ${name}
+*Mobile:* ${mobile}
+*Email:* ${email}
+*Product:* ${product.name}
+*Pack:* ${product.qty}
+*Quantity:* ${qty}
+*Unit Price:* ₹${formatPrice(unitPrice)}
+*Total Price:* ₹${formatPrice(totalPrice)}
+----------------------------------
+
+Please process my order.`;
+
+            closeModal("order-modal");
+
+            openWhatsApp(message);
         }
 
-        function handleBulkSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('bulk-name').value;
-            const mobile = document.getElementById('bulk-mobile').value;
-            const business = document.getElementById('bulk-business').value || 'N/A';
-            const req = document.getElementById('bulk-req').value;
+        /* =========================================================
+           BULK ENQUIRY
+           ========================================================= */
+
+        function handleBulkSubmit(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("bulk-name").value.trim();
+
+            const mobile =
+                document.getElementById("bulk-mobile").value.trim();
+
+            const business =
+                document.getElementById("bulk-business").value.trim() || "N/A";
+
+            const requirement =
+                document.getElementById("bulk-req").value.trim() || "Not specified";
 
             const newEnquiry = {
                 id: Date.now().toString(),
-                date: new Date().toLocaleDateString(),
+                date: new Date().toLocaleString("en-IN"),
                 name,
                 mobile,
-                email: 'N/A',
-                detail: `BULK ENQUIRY: ${business} - Req: ${req}`,
-                status: 'New'
+                email: "N/A",
+                detail: `BULK ENQUIRY: ${business} - Requirement: ${requirement}`,
+                status: "New"
             };
 
             enquiries.unshift(newEnquiry);
-            localStorage.setItem('sweety_enquiries', JSON.stringify(enquiries));
+
+            saveStorage(
+                ENQUIRIES_STORAGE_KEY,
+                enquiries
+            );
+
             renderAdminEnquiries();
 
-            const msg = `*BULK ENQUIRY - Sweety Amruttulya* %0A` +
-                `----------------------------------%0A` +
-                `*Name:* ${name}%0A` +
-                `*Mobile:* ${mobile}%0A` +
-                `*Business:* ${business}%0A` +
-                `*Requirement (kg):* ${req}%0A` +
-                `----------------------------------%0A` +
-                `Looking for bulk pricing & deal.`;
+            const message = `*BULK / WHOLESALE ENQUIRY - SWEETY AMRUTTULYA*
 
-            closeModal('bulk-modal');
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+----------------------------------
+*Name:* ${name}
+*Mobile:* ${mobile}
+*Business:* ${business}
+*Requirement:* ${requirement}
+----------------------------------
+
+I am interested in bulk pricing and wholesale details.`;
+
+            closeModal("bulk-modal");
+
+            openWhatsApp(message);
         }
 
-        function quickEnquire(prodName) {
-            const msg = `Hi Sweety Amruttulya,%0AI would like to enquire about *${prodName}*. Please provide details.`;
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+        /* =========================================================
+           QUICK PRODUCT ENQUIRY
+           ========================================================= */
+
+        function quickEnquire(productName) {
+
+            const message = `Hi Sweety Amruttulya,
+
+I would like to enquire about:
+
+*${productName}*
+
+Please provide product details, available pack sizes and pricing.
+
+Thank you.`;
+
+            openWhatsApp(message);
         }
 
-        function handleGeneralContactSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('contact-name').value;
-            const mobile = document.getElementById('contact-mobile').value;
-            const email = document.getElementById('contact-email').value || 'N/A';
-            const message = document.getElementById('contact-msg').value;
+        /* =========================================================
+           CONTACT FORM
+           ========================================================= */
 
-            const msg = `*GENERAL ENQUIRY - Sweety Amruttulya*%0A` +
-                `*Name:* ${name}%0A` +
-                `*Mobile:* ${mobile}%0A` +
-                `*Email:* ${email}%0A` +
-                `*Message:* ${message}`;
+        function handleGeneralContactSubmit(event) {
 
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+            event.preventDefault();
+
+            const name =
+                document.getElementById("contact-name").value.trim();
+
+            const mobile =
+                document.getElementById("contact-mobile").value.trim();
+
+            const email =
+                document.getElementById("contact-email").value.trim() || "N/A";
+
+            const messageText =
+                document.getElementById("contact-msg").value.trim();
+
+            const message = `*GENERAL ENQUIRY - SWEETY AMRUTTULYA*
+
+----------------------------------
+*Name:* ${name}
+*Mobile:* ${mobile}
+*Email:* ${email}
+*Message:* ${messageText}
+----------------------------------
+
+Please contact me regarding my enquiry.`;
+
+            openWhatsApp(message);
         }
 
-        // ADMIN PANEL
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const passkey = document.getElementById('admin-passkey').value;
-            if (passkey === 'Admin@#8160525632') {
-                closeModal('admin-login-modal');
-                showPage('admin');
+        /* =========================================================
+           ADMIN LOGIN
+           ========================================================= */
+
+        function handleAdminLogin(event) {
+
+            event.preventDefault();
+
+            const passkey =
+                document.getElementById("admin-passkey").value;
+
+            /*
+             * IMPORTANT:
+             * This is only a client-side gate.
+             * It is NOT secure authentication.
+             */
+
+            if (passkey === "Admin@#8160525632") {
+
+                closeModal("admin-login-modal");
+
+                document.getElementById("admin-passkey").value = "";
+
+                showPage("admin");
+
             } else {
-                alert('Invalid passkey! (Admin panel access by dev side)');
+
+                alert("Invalid admin passkey.");
             }
         }
 
         function logoutAdmin() {
-            showPage('home');
+
+            showPage("home");
         }
+
+        /* =========================================================
+           ADMIN TABS
+           ========================================================= */
 
         function switchAdminTab(tabName) {
-            document.getElementById('admin-tab-products').classList.add('hidden');
-            document.getElementById('admin-tab-enquiries').classList.add('hidden');
 
-            document.getElementById('admin-tab-btn-products').className = "px-6 py-3 font-semibold border-b-2 border-transparent text-gray-500 hover:text-tea-800";
-            document.getElementById('admin-tab-btn-enquiries').className = "px-6 py-3 font-semibold border-b-2 border-transparent text-gray-500 hover:text-tea-800";
+            const productsTab =
+                document.getElementById("admin-tab-products");
 
-            if (tabName === 'products') {
-                document.getElementById('admin-tab-products').classList.remove('hidden');
-                document.getElementById('admin-tab-btn-products').className = "px-6 py-3 font-semibold border-b-2 border-tea-800 text-tea-900";
+            const enquiriesTab =
+                document.getElementById("admin-tab-enquiries");
+
+            const productsButton =
+                document.getElementById("admin-tab-btn-products");
+
+            const enquiriesButton =
+                document.getElementById("admin-tab-btn-enquiries");
+
+            if (!productsTab || !enquiriesTab) return;
+
+            productsTab.classList.add("hidden");
+            enquiriesTab.classList.add("hidden");
+
+            productsButton.className =
+                "px-6 py-3 font-semibold border-b-2 border-transparent text-gray-500 hover:text-tea-800";
+
+            enquiriesButton.className =
+                "px-6 py-3 font-semibold border-b-2 border-transparent text-gray-500 hover:text-tea-800";
+
+            if (tabName === "products") {
+
+                productsTab.classList.remove("hidden");
+
+                productsButton.className =
+                    "px-6 py-3 font-semibold border-b-2 border-tea-800 text-tea-900";
+
             } else {
-                document.getElementById('admin-tab-enquiries').classList.remove('hidden');
-                document.getElementById('admin-tab-btn-enquiries').className = "px-6 py-3 font-semibold border-b-2 border-tea-800 text-tea-900";
-            }
-        }
 
-        function renderAdminProducts() {
-            const tbody = document.getElementById('admin-products-tbody');
-            if (!tbody) return;
+                enquiriesTab.classList.remove("hidden");
 
-            tbody.innerHTML = products.map(p => `
-                <tr>
-                    <td class="p-4"><img src="${p.img}" class="w-12 h-12 rounded object-cover border" onerror="this.src='images/logo.jpg'"></td>
-                    <td class="p-4 font-bold text-gray-800">${p.name}</td>
-                    <td class="p-4">₹${p.price}</td>
-                    <td class="p-4 text-green-600 font-bold">₹${p.offerPrice}</td>
-                    <td class="p-4">${p.qty}</td>
-                    <td class="p-4">
-                        <button onclick="openEditProductModal('${p.id}')" class="text-blue-600 hover:underline mr-3"><i class="fas fa-edit"></i> Edit</button>
-                        <button onclick="deleteProduct('${p.id}')" class="text-red-600 hover:underline"><i class="fas fa-trash"></i> Delete</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
+                enquiriesButton.className =
+                    "px-6 py-3 font-semibold border-b-2 border-tea-800 text-tea-900";
 
-        function renderAdminEnquiries() {
-            const tbody = document.getElementById('admin-enquiries-tbody');
-            if (!tbody) return;
-
-            if (enquiries.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400">No enquiries recorded yet.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = enquiries.map(e => `
-                <tr>
-                    <td class="p-4 text-xs text-gray-500">${e.date}</td>
-                    <td class="p-4 font-bold">${e.name}</td>
-                    <td class="p-4">${e.mobile}</td>
-                    <td class="p-4 text-xs font-medium text-tea-900">${e.detail}</td>
-                    <td class="p-4">
-                        <span class="px-2.5 py-1 text-xs font-bold rounded-full ${e.status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-800'}">
-                            ${e.status}
-                        </span>
-                    </td>
-                    <td class="p-4">
-                        <button onclick="toggleEnquiryStatus('${e.id}')" class="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded">
-                            Toggle Status
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function openAddProductModal() {
-            document.getElementById('product-modal-title').textContent = "Add New Product";
-            document.getElementById('prod-edit-id').value = "";
-            document.getElementById('prod-name').value = "";
-            document.getElementById('prod-price').value = "";
-            document.getElementById('prod-offer-price').value = "";
-            document.getElementById('prod-qty').value = "";
-            document.getElementById('prod-img').value = "";
-            document.getElementById('prod-desc').value = "";
-            document.getElementById('product-modal').classList.remove('hidden');
-        }
-
-        function openEditProductModal(id) {
-            const p = products.find(prod => prod.id === id);
-            if (!p) return;
-            document.getElementById('product-modal-title').textContent = "Edit Product";
-            document.getElementById('prod-edit-id').value = p.id;
-            document.getElementById('prod-name').value = p.name;
-            document.getElementById('prod-price').value = p.price;
-            document.getElementById('prod-offer-price').value = p.offerPrice;
-            document.getElementById('prod-qty').value = p.qty;
-            document.getElementById('prod-img').value = p.img;
-            document.getElementById('prod-desc').value = p.desc;
-            document.getElementById('product-modal').classList.remove('hidden');
-        }
-
-        function handleSaveProduct(e) {
-            e.preventDefault();
-            const editId = document.getElementById('prod-edit-id').value;
-            const name = document.getElementById('prod-name').value;
-            const price = Number(document.getElementById('prod-price').value);
-            const offerPrice = Number(document.getElementById('prod-offer-price').value);
-            const qty = document.getElementById('prod-qty').value;
-            const img = document.getElementById('prod-img').value;
-            const desc = document.getElementById('prod-desc').value;
-
-            if (editId) {
-                // Edit existing
-                products = products.map(p => p.id === editId ? { id: editId, name, price, offerPrice, qty, img, desc } : p);
-            } else {
-                // Add new
-                const newProd = { id: Date.now().toString(), name, price, offerPrice, qty, img, desc };
-                products.push(newProd);
-            }
-
-            localStorage.setItem('sweety_products', JSON.stringify(products));
-            renderProducts();
-            renderAdminProducts();
-            closeModal('product-modal');
-        }
-
-        function deleteProduct(id) {
-            if (confirm("Are you sure you want to delete this product?")) {
-                products = products.filter(p => p.id !== id);
-                localStorage.setItem('sweety_products', JSON.stringify(products));
-                renderProducts();
-                renderAdminProducts();
-            }
-        }
-
-        function toggleEnquiryStatus(id) {
-            enquiries = enquiries.map(e => {
-                if (e.id === id) {
-                    e.status = e.status === 'New' ? 'Completed' : 'New';
-                }
-                return e;
-            });
-            localStorage.setItem('sweety_enquiries', JSON.stringify(enquiries));
-            renderAdminEnquiries();
-        }
-
-        function clearAllEnquiries() {
-            if (confirm("Are you sure you want to clear enquiry logs?")) {
-                enquiries = [];
-                localStorage.setItem('sweety_enquiries', JSON.stringify(enquiries));
                 renderAdminEnquiries();
             }
         }
+
+        /* =========================================================
+           ADMIN PRODUCT TABLE
+           ========================================================= */
+
+        function renderAdminProducts() {
+
+            const tbody =
+                document.getElementById("admin-products-tbody");
+
+            if (!tbody) return;
+
+            if (!products.length) {
+
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-6 text-center text-gray-400">
+                        No products available.
+                    </td>
+                </tr>
+            `;
+
+                return;
+            }
+
+            tbody.innerHTML = products.map(product => `
+            <tr>
+
+                <td class="p-4">
+                    <img
+                        src="${escapeHtml(product.img)}"
+                        alt=""
+                        loading="lazy"
+                        class="w-12 h-12 rounded object-cover border"
+                        onerror="imageFallback(this)"
+                    >
+                </td>
+
+                <td class="p-4 font-bold text-gray-800">
+                    ${escapeHtml(product.name)}
+                </td>
+
+                <td class="p-4">
+                    ₹${formatPrice(product.price)}
+                </td>
+
+                <td class="p-4 text-green-600 font-bold">
+                    ₹${formatPrice(product.offerPrice)}
+                </td>
+
+                <td class="p-4">
+                    ${escapeHtml(product.qty)}
+                </td>
+
+                <td class="p-4 whitespace-nowrap">
+
+                    <button
+                        type="button"
+                        onclick="openEditProductModal('${product.id}')"
+                        class="text-blue-600 hover:underline mr-3">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="deleteProduct('${product.id}')"
+                        class="text-red-600 hover:underline">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+
+                </td>
+
+            </tr>
+        `).join("");
+        }
+
+        /* =========================================================
+           ADMIN ENQUIRIES TABLE
+           ========================================================= */
+
+        function renderAdminEnquiries() {
+
+            const tbody =
+                document.getElementById("admin-enquiries-tbody");
+
+            if (!tbody) return;
+
+            if (!Array.isArray(enquiries)) {
+                enquiries = [];
+            }
+
+            if (enquiries.length === 0) {
+
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-6 text-center text-gray-400">
+                        No enquiries recorded yet.
+                    </td>
+                </tr>
+            `;
+
+                return;
+            }
+
+            tbody.innerHTML = enquiries.map(enquiry => `
+
+            <tr>
+
+                <td class="p-4 text-xs text-gray-500">
+                    ${escapeHtml(enquiry.date)}
+                </td>
+
+                <td class="p-4 font-bold">
+                    ${escapeHtml(enquiry.name)}
+                </td>
+
+                <td class="p-4">
+                    ${escapeHtml(enquiry.mobile)}
+                </td>
+
+                <td class="p-4 text-xs font-medium text-tea-900">
+                    ${escapeHtml(enquiry.detail)}
+                </td>
+
+                <td class="p-4">
+
+                    <span class="px-2.5 py-1 text-xs font-bold rounded-full ${enquiry.status === "Completed"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-800"
+                }">
+                        ${escapeHtml(enquiry.status)}
+                    </span>
+
+                </td>
+
+                <td class="p-4">
+
+                    <button
+                        type="button"
+                        onclick="toggleEnquiryStatus('${enquiry.id}')"
+                        class="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded">
+                        Toggle Status
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `).join("");
+        }
+
+        /* =========================================================
+           ADD PRODUCT
+           ========================================================= */
+
+        function openAddProductModal() {
+
+            document.getElementById("product-modal-title").textContent =
+                "Add New Product";
+
+            document.getElementById("prod-edit-id").value = "";
+            document.getElementById("prod-name").value = "";
+            document.getElementById("prod-price").value = "";
+            document.getElementById("prod-offer-price").value = "";
+            document.getElementById("prod-qty").value = "";
+            document.getElementById("prod-img").value = "";
+            document.getElementById("prod-desc").value = "";
+
+            document.getElementById("product-modal").classList.remove("hidden");
+        }
+
+        /* =========================================================
+           EDIT PRODUCT
+           ========================================================= */
+
+        function openEditProductModal(id) {
+
+            const product =
+                products.find(p => String(p.id) === String(id));
+
+            if (!product) {
+
+                alert("Product not found.");
+
+                return;
+            }
+
+            document.getElementById("product-modal-title").textContent =
+                "Edit Product";
+
+            document.getElementById("prod-edit-id").value =
+                product.id;
+
+            document.getElementById("prod-name").value =
+                product.name;
+
+            document.getElementById("prod-price").value =
+                product.price;
+
+            document.getElementById("prod-offer-price").value =
+                product.offerPrice;
+
+            document.getElementById("prod-qty").value =
+                product.qty;
+
+            document.getElementById("prod-img").value =
+                product.img;
+
+            document.getElementById("prod-desc").value =
+                product.desc;
+
+            document.getElementById("product-modal").classList.remove("hidden");
+        }
+
+        /* =========================================================
+           SAVE PRODUCT
+           ========================================================= */
+
+        function handleSaveProduct(event) {
+
+            event.preventDefault();
+
+            const editId =
+                document.getElementById("prod-edit-id").value;
+
+            const name =
+                document.getElementById("prod-name").value.trim();
+
+            const price =
+                Number(document.getElementById("prod-price").value);
+
+            const offerPrice =
+                Number(document.getElementById("prod-offer-price").value);
+
+            const qty =
+                document.getElementById("prod-qty").value.trim();
+
+            const img =
+                document.getElementById("prod-img").value.trim();
+
+            const desc =
+                document.getElementById("prod-desc").value.trim();
+
+            if (!name) {
+                alert("Please enter product name.");
+                return;
+            }
+
+            if (!Number.isFinite(price) || price <= 0) {
+                alert("Please enter a valid original price.");
+                return;
+            }
+
+            if (!Number.isFinite(offerPrice) || offerPrice < 0) {
+                alert("Please enter a valid offer price.");
+                return;
+            }
+
+            if (offerPrice > price) {
+                alert("Offer price cannot be greater than original price.");
+                return;
+            }
+
+            if (!qty) {
+                alert("Please enter product quantity.");
+                return;
+            }
+
+            if (!img) {
+                alert("Please enter image path.");
+                return;
+            }
+
+            const productData = {
+                id: editId || Date.now().toString(),
+                name,
+                price,
+                offerPrice,
+                qty,
+                img,
+                desc
+            };
+
+            if (editId) {
+
+                products = products.map(product =>
+                    String(product.id) === String(editId)
+                        ? productData
+                        : product
+                );
+
+            } else {
+
+                products.push(productData);
+            }
+
+            saveStorage(
+                PRODUCTS_STORAGE_KEY,
+                products
+            );
+
+            renderProducts();
+            renderAdminProducts();
+
+            closeModal("product-modal");
+
+            alert(
+                editId
+                    ? "Product updated successfully."
+                    : "Product added successfully."
+            );
+        }
+
+        /* =========================================================
+           DELETE PRODUCT
+           ========================================================= */
+
+        function deleteProduct(id) {
+
+            const product =
+                products.find(p => String(p.id) === String(id));
+
+            if (!product) return;
+
+            const confirmed =
+                confirm(`Delete "${product.name}"?`);
+
+            if (!confirmed) return;
+
+            products =
+                products.filter(
+                    p => String(p.id) !== String(id)
+                );
+
+            saveStorage(
+                PRODUCTS_STORAGE_KEY,
+                products
+            );
+
+            renderProducts();
+            renderAdminProducts();
+        }
+
+        /* =========================================================
+           ENQUIRY STATUS
+           ========================================================= */
+
+        function toggleEnquiryStatus(id) {
+
+            enquiries = enquiries.map(enquiry => {
+
+                if (String(enquiry.id) === String(id)) {
+
+                    return {
+                        ...enquiry,
+                        status:
+                            enquiry.status === "New"
+                                ? "Completed"
+                                : "New"
+                    };
+                }
+
+                return enquiry;
+            });
+
+            saveStorage(
+                ENQUIRIES_STORAGE_KEY,
+                enquiries
+            );
+
+            renderAdminEnquiries();
+        }
+
+        /* =========================================================
+           CLEAR ENQUIRIES
+           ========================================================= */
+
+        function clearAllEnquiries() {
+
+            if (!enquiries.length) {
+
+                alert("There are no enquiries to clear.");
+
+                return;
+            }
+
+            if (!confirm("Are you sure you want to clear all enquiry logs?")) {
+                return;
+            }
+
+            enquiries = [];
+
+            saveStorage(
+                ENQUIRIES_STORAGE_KEY,
+                enquiries
+            );
+
+            renderAdminEnquiries();
+        }
+
+        /* =========================================================
+           SECURITY / HTML ESCAPING HELPERS
+           ========================================================= */
+
+        function escapeHtml(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function escapeJs(value) {
+
+            return String(value ?? "")
+                .replace(/\\/g, "\\\\")
+                .replace(/'/g, "\\'")
+                .replace(/\r/g, "\\r")
+                .replace(/\n/g, "\\n");
+        }
+
+        /* =========================================================
+           CLOSE MODAL WHEN CLICKING OUTSIDE
+           ========================================================= */
+
+        document.addEventListener("click", event => {
+
+            const modalIds = [
+                "order-modal",
+                "bulk-modal",
+                "admin-login-modal",
+                "product-modal"
+            ];
+
+            modalIds.forEach(id => {
+
+                const modal = document.getElementById(id);
+
+                if (
+                    modal &&
+                    !modal.classList.contains("hidden") &&
+                    event.target === modal
+                ) {
+                    closeModal(id);
+                }
+            });
+        });
+
+        /* =========================================================
+           ESC KEY CLOSES MODALS
+           ========================================================= */
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key !== "Escape") return;
+
+            [
+                "order-modal",
+                "bulk-modal",
+                "admin-login-modal",
+                "product-modal"
+            ].forEach(closeModal);
+        });
+
     </script>
 </body>
 
